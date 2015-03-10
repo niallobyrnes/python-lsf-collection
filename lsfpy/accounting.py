@@ -165,15 +165,22 @@ class TermInfo(object):
         id = str(id)
         if (not id in TermInfo.TERMINFO):
             id = "0"
+
         self.name = TermInfo.TERMINFO[id]['name']
         ''' The name of the error as specified in lsbatch.h, for example TERM_RUNLIMIT
         '''
+
         self.description = TermInfo.TERMINFO[id]['desc']
         ''' Description of the error as specified in the LSF documenation.
             For example: "Job killed after reaching LSF run time limit"
         '''
+
         self.number = int(TermInfo.TERMINFO[id]['number'])
         ''' The error number, for example: 5.
+        '''
+
+        self.id = int(id)
+        ''' Pass back the id
         '''
 
 class CommandInfo(object):
