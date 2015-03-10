@@ -316,7 +316,7 @@ class JobFinishEvent(object):
             numAskedHosts
         '''
         while i>0:
-            i- = 1
+            i -= 1
             self.askedHosts.append(row.pop(0))
 
         self.numExHosts = int(row.pop(0))
@@ -342,7 +342,7 @@ class JobFinishEvent(object):
             numExHosts
         '''
         while i>0:
-            i- = 1
+            i -= 1
             self.execHosts.append(row.pop(0))
 
         self.jStatus = int(row.pop(0))
@@ -561,20 +561,19 @@ class JobFinishEvent(object):
         self.licenseProject = row.pop(0)
 
         if self.startTimeEpoch<1:
-                job never started
-                Possibly change to raise exception
             self.runTime = datetime.timedelta(0)
         else:
             self.runTime = self.eventTime-self.startTime
 
         if self.startTimeEpoch <1:
-                Job never started
             self.waitTime = self.eventTime-self.submitTime
             self.startTime = self.termTime
         else:
             self.waitTime = self.startTime-self.submitTime
-            The time the job was pending.  
+
         self.pendTime = self.waitTime
+        ''' The time the job was pending.  
+        '''
 
 class AcctFile:
     '''
@@ -623,4 +622,3 @@ class AcctFile:
         except:
             j = JobFinishEvent(self.reader.next())
         return j
-'''
